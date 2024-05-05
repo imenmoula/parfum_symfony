@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Parfum index{% endblock %}
+
+{% block body %}
+    <h1>Parfum index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Qte_stock</th>
+                <th>Image</th>
+                <th>Volume</th>
+                <th>Genre</th>
+                <th>Date_creation</th>
+                <th>Date_update</th>
+                <th>Marque</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for parfum in parfums %}
+            <tr>
+                <td>{{ parfum.id }}</td>
+                <td>{{ parfum.nom }}</td>
+                <td>{{ parfum.description }}</td>
+                <td>{{ parfum.prix }}</td>
+                <td>{{ parfum.qteStock }}</td>
+                <td>{{ parfum.image }}</td>
+                <td>{{ parfum.volume }}</td>
+                <td>{{ parfum.genre }}</td>
+                <td>{{ parfum.dateCreation ? parfum.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ parfum.dateUpdate ? parfum.dateUpdate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ parfum.marque }}</td>
+                <td>
+                    <a href="{{ path('app_parfum_show', {'id': parfum.id}) }}">show</a>
+                    <a href="{{ path('app_parfum_edit', {'id': parfum.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_parfum_new') }}">Create new</a>
+{% endblock %}

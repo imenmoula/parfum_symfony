@@ -1,4 +1,61 @@
-{{ form_start(form) }}
+{# {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+ #}
+
+ {{ form_start(form) }}
+<div>
+<label for="category_name" class="form-label">
+{{ form_label(form.nom) }}
+</label>
+{{ form_widget(form.nom, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="category_descreption" class="form-label">
+{{ form_label(form.description) }}
+</label>
+{{ form_widget(form.description, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="category_image" class="form-label">
+{{ form_label(form.image) }}
+</label>
+{{ form_widget(form.image, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="category_date_creation" class="form-label">
+{{ form_label(form.date_creation) }}
+</label>
+{{ form_widget(form.date_creation, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="category_dateupadate" class="form-label">
+{{ form_label(form.date_update) }}
+</label>
+{{ form_widget(form.date_update, {'attr':{'class':'form-control'}}) }}
+</div>
+
+
+<div>
+<label for="category_status" class="form-label">
+{{ form_label(form.status) }}
+</label>
+{{ form_widget(form.status, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="category_sexe" class="form-label">
+{{ form_label(form.sexe) }}
+</label>
+{{ form_widget(form.sexe, {'attr':{'class':'form-control'}}) }}
+</div>
+<div>&nbsp;</div>
+<div>
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+</div>
 {{ form_end(form) }}

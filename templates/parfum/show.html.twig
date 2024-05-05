@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Parfum{% endblock %}
+
+{% block body %}
+    <h1>Parfum</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ parfum.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ parfum.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ parfum.description }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ parfum.prix }}</td>
+            </tr>
+            <tr>
+                <th>Qte_stock</th>
+                <td>{{ parfum.qteStock }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ parfum.image }}</td>
+            </tr>
+            <tr>
+                <th>Volume</th>
+                <td>{{ parfum.volume }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ parfum.genre }}</td>
+            </tr>
+            <tr>
+                <th>Date_creation</th>
+                <td>{{ parfum.dateCreation ? parfum.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_update</th>
+                <td>{{ parfum.dateUpdate ? parfum.dateUpdate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ parfum.marque }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_parfum_index') }}">back to list</a>
+
+    <a href="{{ path('app_parfum_edit', {'id': parfum.id}) }}">edit</a>
+
+    {{ include('parfum/_delete_form.html.twig') }}
+{% endblock %}

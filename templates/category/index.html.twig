@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Category index{% endblock %}
 
@@ -44,4 +44,51 @@
     </table>
 
     <a href="{{ path('app_category_new') }}">Create new</a>
+{% endblock %} #}
+{% extends 'base.html.twig' %}
+{% block title %}LES Categorie des Parfum{% endblock %}
+{% block body %}
+<h1>Les Categorie des Parfum</h1>
+    <a href="{{ path('app_category_new') }}">Create new</a>
+
+<table class="table">
+<thead>
+<tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Date_creation</th>
+                <th>Date_update</th>
+                <th>Status</th>
+                <th>Sexe</th>
+                <th>actions</th>
+</tr>
+</thead>
+<tbody>
+{% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.nom }}</td>
+                <td>{{ category.description }}</td>
+                <td>  category.image </td>
+                <td>{{ category.dateCreation ? category.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ category.dateUpdate ? category.dateUpdate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ category.status }}</td>
+                <td>{{ category.sexe }}</td>
+                <td>
+                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">Edit</a>
+                    <a href="{{ path('app_category_delete', {'id': category.id}) }}">Delete</a>
+                    <a href="{{ path('app_category_show', {'id': category.id}) }}">Show</a>
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">>no records found</td>
+            </tr>
+        {% endfor %}
+</tbody>
+</table>
 {% endblock %}
+
