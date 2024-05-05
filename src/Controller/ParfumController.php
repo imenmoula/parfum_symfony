@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Parfum;
+use App\Entity\Category;
 use App\Form\ParfumType;
 use App\Repository\ParfumRepository;
 use Doctrine\ORM\EntityManagerInterface;

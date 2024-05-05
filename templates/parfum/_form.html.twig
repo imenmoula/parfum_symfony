@@ -1,4 +1,92 @@
-{{ form_start(form) }}
+{# {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }} #}
+
+{{ form_start(form) }}
+<div>
+<label for="parfum_name" class="form-label">
+{{ form_label(form.nom) }}
+</label>
+{{ form_widget(form.nom, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="parfums_descreption" class="form-label">
+{{ form_label(form.description) }}
+</label>
+{{ form_widget(form.description, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="parfums_prix" class="form-label">
+{{ form_label(form.prix) }}
+</label>
+{{ form_widget(form.prix, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="parfums_quantitestock" class="form-label">
+{{ form_label(form.qte_stock) }}
+</label>
+{{ form_widget(form.qte_stock, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="parfums_image" class="form-label">
+{{ form_label(form.image) }}
+</label>
+{{ form_widget(form.image, {'attr':{'class':'form-control'}}) }}
+</div>
+
+
+<div>
+<label for="parfums_volume" class="form-label">
+{{ form_label(form.volume) }}
+</label>
+{{ form_widget(form.volume, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="parfums_genre" class="form-label">
+{{ form_label(form.genre) }}
+</label>
+{{ form_widget(form.genre, {'attr':{'class':'form-control'}}) }}
+</div>
+
+
+<div>
+<label for="parfums_datecreat" class="form-label">
+{{ form_label(form.date_creation) }}
+</label>
+{{ form_widget(form.date_creation, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="parfums_dateupdate" class="form-label">
+{{ form_label(form.date_update) }}
+</label>
+{{ form_widget(form.date_update, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="parfums_marque" class="form-label">
+{{ form_label(form.marque) }}
+</label>
+{{ form_widget(form.marque, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="parfums_marque" class="form-label">
+{{ form_label(form.category) }}
+</label>
+{{ form_widget(form.category, {'attr':{'class':'form-control'}}) }}
+</div>
+
+
+<div>&nbsp;</div>
+<div>
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+</div>
 {{ form_end(form) }}
+

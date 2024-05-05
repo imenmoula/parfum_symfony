@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Parfum{% endblock %}
+{% block title %}new parfum{% endblock %}
 
 {% block body %}
     <h1>Create new Parfum</h1>
 
     {{ include('parfum/_form.html.twig') }}
 
-    <a href="{{ path('app_parfum_index') }}">back to list</a>
+    <a  class="btn btn-primary"href="{{ path('app_parfum_index') }}">Retour à la liste</a>
+       {# <a class="btn btn-primary" href="{{ path('app_parfum_index') }}">Retour à la liste</a> #}
+
 {% endblock %}

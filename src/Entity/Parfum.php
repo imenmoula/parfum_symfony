@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-use App\Entity\category;
+use App\Entity\Category;
 use App\Repository\ParfumRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -190,5 +190,9 @@ class Parfum
         $this->marque = $marque;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->nom.' '.$this->description.' '.$this->image.' '.$this->date_creation.' '.$this->date_update.' '.$this->status.' '.$this->sexe.' '.$this.category;
     }
 }

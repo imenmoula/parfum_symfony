@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Parfum index{% endblock %}
+{% block title %}list_parfums{% endblock %}
 
 {% block body %}
-    <h1>Parfum index</h1>
+    <h1>List des parfums</h1>
+<a class="btn btn-success" href="{{ path('app_parfum_new') }}">Nouveau Parfum</a>
 
     <table class="table">
         <thead>
@@ -19,6 +20,7 @@
                 <th>Date_creation</th>
                 <th>Date_update</th>
                 <th>Marque</th>
+                <th>categories</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -36,9 +38,16 @@
                 <td>{{ parfum.dateCreation ? parfum.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ parfum.dateUpdate ? parfum.dateUpdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ parfum.marque }}</td>
+                <td>{{parfum.category.nom  }}</td>
                 <td>
-                    <a href="{{ path('app_parfum_show', {'id': parfum.id}) }}">show</a>
-                    <a href="{{ path('app_parfum_edit', {'id': parfum.id}) }}">edit</a>
+                    {# <button class="btn btn-primary"><a href="{{ path('app_parfum_show', {'id': parfum.id}) }}">show</a></button>
+                    <button class="btn btn-primary"><a href="{{ path('app_parfum_edit', {'id': parfum.id}) }}">edit</a></button> #}
+                <div class="btn-group" role="group" aria-label="Actions">
+                <a class="btn btn-primary" href="{{ path('app_parfum_show', {'id': parfum.id}) }}">Consulte</a>
+                <a class="btn btn-warning" href="{{ path('app_parfum_edit', {'id': parfum.id}) }}">Modif</a>
+                <a class="btn btn-danger" href="{{ path('app_parfum_delete', {'id': parfum.id}) }}">Supprimer</a>
+                </div>
+
                 </td>
             </tr>
         {% else %}
@@ -49,5 +58,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_parfum_new') }}">Create new</a>
+    {# <a href="{{ path('app_parfum_new') }}">Create new</a> #}
 {% endblock %}
