@@ -1,0 +1,57 @@
+{# {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) #}
+{{form_start(form) }}
+<div>
+<label for="promotion_name" class="form-label">
+{{ form_label(form.nomPromotio) }}
+</label>
+{{ form_widget(form.nomPromotio, {'attr':{'class':'form-control'}}) }}
+</div>
+<div>
+<label for="promotion_description" class="form-label">
+{{ form_label(form.description) }}
+</label>
+{{ form_widget(form.description, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="promotion_dateDebut" class="form-label">
+{{ form_label(form.date_debut) }}
+</label>
+{{ form_widget(form.date_debut, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="promotion_dateFin" class="form-label">
+{{ form_label(form.date_fin) }}
+</label>
+{{ form_widget(form.date_fin, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="promotion_pourcentage" class="form-label">
+{{ form_label(form.pourcentage) }}
+</label>
+{{ form_widget(form.pourcentage, {'attr':{'class':'form-control'}}) }}
+</div>
+
+<div>
+<label for="promotion_parfum" class="form-label">
+{{ form_label(form.parfum)}}
+</label>
+{{ form_widget(form.parfum, {'attr':{'class':'form-control'}}) }}
+</div>
+<div>
+<label for="promotion_catgory" class="form-label">
+{{ form_label(form.category) }}
+</label>
+{{ form_widget(form.category, {'attr':{'class':'form-control'}}) }}
+
+</div>
+<div>&nbsp;</div>
+<div>
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Promotion index{% endblock %}
+
+{% block body %}
+    <h1>Liste de Promotions</h1>
+<a class="btn btn-success" href="{{ path('app_promotion_new') }}">Ajoute nouveau promotion</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomPromotio</th>
+                <th>Description</th>
+                <th>Date_debut</th>
+                <th>Date_fin</th>
+                <th>Pourcentage</th>
+                <th>Parfum</th>
+                <th>Categorie de parfum </th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for promotion in promotions %}
+            <tr>
+                <td>{{ promotion.id }}</td>
+                <td>{{ promotion.nomPromotio }}</td>
+                <td>{{ promotion.description }}</td>
+                <td>{{ promotion.dateDebut ? promotion.dateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ promotion.dateFin ? promotion.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ promotion.pourcentage }}</td>
+                <td>{{ promotion.Parfum. nom}}</td>
+                <td>{{ promotion.category.nom }}</td>
+                <td>
+                    {# <a href="{{ path('app_promotion_show', {'id': promotion.id}) }}">show</a>
+                    <a href="{{ path('app_promotion_edit', {'id': promotion.id}) }}">edit</a> #}
+
+                <div class="btn-group" role="group" aria-label="Actions">
+                <a class="btn btn-primary" href="{{ path('app_promotion_show', {'id': promotion.id}) }}">Consulte</a>
+                <a class="btn btn-warning" href="{{ path('app_promotion_edit', {'id': promotion.id}) }}">Modif</a>
+                <a class="btn btn-danger" href="{{ path('app_promotion_delete', {'id': promotion.id}) }}">Supprimer</a>
+                </div>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   
+{% endblock %}

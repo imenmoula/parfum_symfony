@@ -21,6 +21,7 @@
         "symfony/maker-bundle": "^1.59",
         "symfony/routing": "6.4.*",
         "symfony/runtime": "6.4.*",
+        "symfony/security-bundle": "6.4.*",
         "symfony/security-csrf": "6.4.*",
         "symfony/twig-bundle": "6.4.*",
         "symfony/validator": "6.4.*",
@@ -30,7 +31,9 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.6",
-        "fakerphp/faker": "^1.23"
+        "fakerphp/faker": "^1.23",
+        "symfony/stopwatch": "6.4.*",
+        "symfony/web-profiler-bundle": "6.4.*"
     },
     "config": {
         "allow-plugins": {
