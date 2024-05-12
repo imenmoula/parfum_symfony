@@ -17,6 +17,7 @@
                 <th>Image</th>
                 <th>Volume</th>
                 <th>Genre</th>
+
                 <th>Date_creation</th>
                 <th>Date_update</th>
                 <th>Marque</th>
@@ -32,7 +33,11 @@
                 <td>{{ parfum.description }}</td>
                 <td>{{ parfum.prix }}</td>
                 <td>{{ parfum.qteStock }}</td>
-                <td>{{ parfum.image }}</td>
+                <td>
+                    image
+                </td>
+                    
+
                 <td>{{ parfum.volume }}</td>
                 <td>{{ parfum.genre }}</td>
                 <td>{{ parfum.dateCreation ? parfum.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
@@ -40,8 +45,6 @@
                 <td>{{ parfum.marque }}</td>
                 <td>{{parfum.category.nom  }}</td>
                 <td>
-                    {# <button class="btn btn-primary"><a href="{{ path('app_parfum_show', {'id': parfum.id}) }}">show</a></button>
-                    <button class="btn btn-primary"><a href="{{ path('app_parfum_edit', {'id': parfum.id}) }}">edit</a></button> #}
                 <div class="btn-group" role="group" aria-label="Actions">
                 <a class="btn btn-primary" href="{{ path('app_parfum_show', {'id': parfum.id}) }}">Consulte</a>
                 <a class="btn btn-warning" href="{{ path('app_parfum_edit', {'id': parfum.id}) }}">Modif</a>

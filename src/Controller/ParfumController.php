@@ -31,11 +31,13 @@ class ParfumController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager->persist($parfum);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_parfum_index', [], Response::HTTP_SEE_OTHER);
         }
+            
 
         return $this->render('parfum/new.html.twig', [
             'parfum' => $parfum,
@@ -58,6 +60,7 @@ class ParfumController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_parfum_index', [], Response::HTTP_SEE_OTHER);
@@ -79,4 +82,6 @@ class ParfumController extends AbstractController
 
         return $this->redirectToRoute('app_parfum_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 }

@@ -6,9 +6,13 @@
 parameters:
 
 services:
+    app.search_type:
+        class: App\Form\SearchType
+        tags: ['form.type']
     annotation_reader:
         class: Doctrine\Common\Annotations\AnnotationReader
         
+       
             # see https://symfony.com/doc/current/reference/configuration/framework.html
       
 

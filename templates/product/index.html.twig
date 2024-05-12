@@ -1,20 +1,39 @@
-{% extends 'base.html.twig' %}
+{% extends 'front.html.twig' %}
 
-{% block title %}Hello ProductController!{% endblock %}
+{% block title %}Nos Parfums - Boutique{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Filtrer</h3>
+            <p> Colonne de filter</p>
+            {{ form(form) }}
+        </div>
+        <div class="col-md-9">
+            <h1 class="text-center my-5">Nos Parfums</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/laragon/www/parfum_project_symfony/src/Controller/ProductController.php</code></li>
-        <li>Your template at <code>C:/laragon/www/parfum_project_symfony/templates/product/index.html.twig</code></li>
-    </ul>
-</div>
+            <div class="container">
+                <div class="row">
+                    {% for parfum in parfums %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                {# <!--img src="/uploads/{{ parfum.image }}" class="card-img-top" alt="{{ parfum.nom }}"---> #}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ parfum.nom }}</h5>
+                                    <p class="card-text"><strong>Catégorie:</strong> {{ parfum.category.nom }}</p>
+                                    <p class="card-text">{{ parfum.description }}</p>
+                                    <p class="card-text"><strong>Prix:</strong> {{ parfum.prix }}Dt</p>
+                                    <p class="card-text"><strong>Volume:</strong> {{ parfum.volume }}ml</p>
+                                    <p class="card-text"><strong>Genre:</strong> {{ parfum.genre }}</p>
+                                    <p class="card-text"><strong>Marque:</strong> {{ parfum.marque }}</p>
+                                    <p class="card-text"><strong>Quantite disponible:</strong> {{ parfum.getQteStock() }}</p>
+                                    <a class="btn btn-primary" href="{{ path('product', { 'nom': parfum.nom }) }}">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

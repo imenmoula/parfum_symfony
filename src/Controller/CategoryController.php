@@ -30,6 +30,7 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager->persist($category);
             $entityManager->flush();
 
@@ -57,6 +58,8 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->handleImageUpload($request, $parfum);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
@@ -78,4 +81,6 @@ class CategoryController extends AbstractController
 
         return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 }

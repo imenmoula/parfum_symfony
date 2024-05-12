@@ -23,8 +23,10 @@ class Category
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-   # private ?string $image = null;
-   private $image;
+   /**
+    * @ORM\Column(type="string", nullable=true)
+  */
+  private $image;
 
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -80,15 +82,26 @@ class Category
 
         return $this;
     }*/
-    public function getImage(): ?File
+//     public function getImage(): ?File
+// {
+//     if ($this->image !== null) {
+//         // Assurez-vous que $this->image est une chaîne représentant le chemin du fichier
+//         return new File($this->image);
+//     }
+//     return null;
+// }
+//     public function setImage(?File $image): self
+// {
+//     $this->image = $image;
+
+//     return $this;
+// }
+public function getImage(): ?string
 {
-    if ($this->image !== null) {
-        // Assurez-vous que $this->image est une chaîne représentant le chemin du fichier
-        return new File($this->image);
-    }
-    return null;
+    return $this->image;
 }
-    public function setImage(?File $image): self
+
+public function setImage(?string $image): self
 {
     $this->image = $image;
 

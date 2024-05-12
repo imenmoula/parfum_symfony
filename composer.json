@@ -12,6 +12,7 @@
         "doctrine/doctrine-bundle": "^2.12",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.1",
+        "easycorp/easyadmin-bundle": "^4.10",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/asset": "6.4.*",
         "symfony/console": "6.4.*",
@@ -20,6 +21,7 @@
         "symfony/form": "6.4.*",
         "symfony/framework-bundle": "6.4.*",
         "symfony/maker-bundle": "^1.59",
+        "symfony/mime": "6.4.*",
         "symfony/routing": "6.4.*",
         "symfony/runtime": "6.4.*",
         "symfony/security-bundle": "6.4.*",
@@ -28,7 +30,8 @@
         "symfony/validator": "6.4.*",
         "symfony/yaml": "6.4.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "vich/uploader-bundle": "^2.3"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.6",
