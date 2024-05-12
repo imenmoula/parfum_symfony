@@ -156,8 +156,13 @@ public function setImage(?string $image): self
 
         return $this;
     }
+    // public function __toString()
+    // {
+    //     return $this->nom.' '.$this->description.' '.$this->image.' '.$this->date_creation.' '.$this->date_update.' '.$this->status.' '.$this->sexe;
+    // }
+
     public function __toString()
     {
-        return $this->nom.' '.$this->description.' '.$this->image.' '.$this->date_creation.' '.$this->date_update.' '.$this->status.' '.$this->sexe;
+        return $this->nom;
     }
 }

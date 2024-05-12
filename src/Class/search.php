@@ -11,7 +11,7 @@ class search
     /**
      * @var category
      */
-    public $categorie=[];
+    public $category=[];
     
 }
 ?>
