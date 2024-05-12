@@ -11,13 +11,43 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+           ->add('firstname', TextType::class, 
+           ['label' => ' votre Prénom',
+           'attr' => [
+           'placeholder' => 'merci Entrer votre Prénom',
+           ]
+        ])    
+        ->add('lastname',TextType::class, 
+        ['label' => ' votre Nom',
+        'attr' => [
+        'placeholder' => 'merci Entrer votre Nom',
+        ]])
+            ->add('telephone',TextType::class, 
+            ['label' => ' votre Téléphone',
+            'attr' => [
+            'placeholder' => 'merci Entrer votre Téléphone',
+            ]])
+            ->add('adresse',TextType::class, 
+            ['label' => ' votre Adresse',
+            'attr' => [
+            'placeholder' => 'merci Entrer votre Adresse',
+            ]])
+            ->add('email',EmailType::class,[
+            'label' => ' votre Email',
+            'attr' => [
+            'placeholder' => 'merci Entrer votre Email',
+            ]
+            ])
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -33,16 +63,19 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'svp entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'svp entrer un mot de passe {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
             ])
+            ->add('submit', SubmitType::class, 
+            ['label' => 'S\'inscrire'])
+
         ;
     }
     public function configureOptions(OptionsResolver $resolver): void

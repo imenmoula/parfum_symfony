@@ -25,7 +25,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    private array $roles = [];
+    private ?string $roles = 'ROLE_USER' ;
+
+   
 
     /**
      * @var string The hashed password
@@ -37,7 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lastnmae = null;
+    private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
     private ?string $telephone = null;
@@ -75,22 +77,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      *
-     * @return list<string>
+     * 
      */
-    public function getRoles(): array
+    public function getRoles(): string
     {
-        $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
-        return array_unique($roles);
+        return $this->roles;
     }
 
-    /**
-     * @param list<string> $roles
-     */
-    public function setRoles(array $roles): static
+    
+    public function setRoles(string $roles): static
     {
+        // Ensure that every user at least has ROLE_USER
+        $roles = 'ROLE_USER';
+
+        // @todo: You should validate the roles here, e.g. check if they exist in the
+        //        ROLE_* constants defined by the SecurityBundle
+
         $this->roles = $roles;
 
         return $this;
@@ -132,14 +136,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getLastnmae(): ?string
+    public function getLastname(): ?string
     {
-        return $this->lastnmae;
+        return $this->lastname;
     }
 
-    public function setLastnmae(string $lastnmae): static
+    public function setLastname(string $lastname): static
     {
-        $this->lastnmae = $lastnmae;
+        $this->lastname = $lastname;
 
         return $this;
     }

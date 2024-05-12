@@ -22,7 +22,7 @@ final class Version20240511212854 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE category CHANGE image image VARCHAR(255) NOT NULL');
         $this->addSql('ALTER TABLE parfum CHANGE image image VARCHAR(255) NOT NULL');
-        $this->addSql('ALTER TABLE user ADD firstname VARCHAR(255) NOT NULL, ADD lastnmae VARCHAR(255) NOT NULL, ADD telephone VARCHAR(255) NOT NULL, ADD adresse VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE user ADD firstname VARCHAR(255) NOT NULL, ADD lastname VARCHAR(255) NOT NULL, ADD telephone VARCHAR(255) NOT NULL, ADD adresse VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema): void
@@ -30,6 +30,6 @@ final class Version20240511212854 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE category CHANGE image image VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE parfum CHANGE image image VARCHAR(255) DEFAULT NULL');
-        $this->addSql('ALTER TABLE user DROP firstname, DROP lastnmae, DROP telephone, DROP adresse');
+        $this->addSql('ALTER TABLE user DROP firstname, DROP lastname, DROP telephone, DROP adresse');
     }
 }
