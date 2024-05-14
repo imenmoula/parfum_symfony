@@ -35,7 +35,7 @@ class ProductController extends AbstractController
         $form = $this->createForm(searchType::class, $search);
         $form->handleRequest($request);
         $criteria = ['nom' => $request->query->get('string')];
-        if( $criteria){
+        if( $request->query->get('string')){
             $parfums = $this->entityManager->getRepository(Parfum::class)->findByNom($criteria);
         }
         else 
