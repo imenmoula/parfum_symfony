@@ -19,8 +19,12 @@
             <p><strong>Marque:</strong> {{ parfums.marque }}</p>
             <p><strong>Famille des parfum:</strong> {{ parfums.category.nom }}</p>
 
+            {% if  parfums.getQteStock() >0 %}
+            <a class="btn btn-primary" href="{{ path('cart_add',{id:parfums.id}) }}">Ajouter au panier</a>
 
-            <a class="btn btn-primary" href="#">Ajouter au panier</a>
+            {% else %}
+            <p class="text-danger" >Temporairment en rupture de stock</p>
+            {% endif %}
         </div>
     </div>
 </div>

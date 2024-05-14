@@ -11,26 +11,29 @@ use App\Form\searchType;
 use App\Entity\Category;
 use src\Class\Search; // Add this use statement
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class ProductController extends AbstractController
 {
     private $entityManager;
-    private $request;
+    private $requestStack;
 
     #[Route('/product', methods: 'GET', name: 'app_product')]
-    public function __construct(EntityManagerInterface $entityManager, Request $request)
+    public function __construct(EntityManagerInterface $entityManager, RequestStack $requestStack)
     {
         $this->entityManager = $entityManager;
-        $this->request = $request;
+        $this->requestStack = $requestStack;
     }
 
     #[Route('/product', methods: 'GET', name: 'app_product')]
     public function index(): Response
     {
+        $request = $this->requestStack->getCurrentRequest();
+
         // $parfums = $this->entityManager->getRepository(Parfum::class)->findAll();
         $search = new search(); 
         $form = $this->createForm(searchType::class, $search);
-        $form->handleRequest($this->request);
+        $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $parfums = $this->entityManager->getRepository(Parfum::class)->findWithSearch($search);
@@ -59,4 +62,5 @@ class ProductController extends AbstractController
         'parfums'=> $parfums         
         ]);
     }
+    
 }

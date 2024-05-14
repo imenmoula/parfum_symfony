@@ -6,9 +6,16 @@
 parameters:
 
 services:
+    App\Controller\ProductController:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+            $requestStack: '@request_stack'
+
+   
     app.search_type:
         class: App\Form\SearchType
         tags: ['form.type']
+
     annotation_reader:
         class: Doctrine\Common\Annotations\AnnotationReader
         

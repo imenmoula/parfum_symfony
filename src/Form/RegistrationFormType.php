@@ -72,11 +72,11 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            ->add('submit', SubmitType::class, 
-            ['label' => 'S\'inscrire'])
+            ]);
+        //     ->add('submit', SubmitType::class, 
+        //     ['label' => 'S\'inscrire'])
 
-        ;
+        // ;
     }
     public function configureOptions(OptionsResolver $resolver): void
     {
