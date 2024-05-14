@@ -23,7 +23,7 @@ class ProduitRepository extends ServiceEntityRepository
     
     return $this->createQueryBuilder('p')
     ->andWhere('p.nom LIKE :nom')
-    ->setParameter('nom', $criteria['nom'] . '%') // Adding % to perform a search for names starting with the given value
+    ->setParameter('nom', '%' . $criteria['nom'] . '%') // Adding % to perform a search for names starting with the given value
     ->getQuery()
     ->getResult();
 }
