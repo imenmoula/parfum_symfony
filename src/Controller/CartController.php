@@ -19,7 +19,7 @@ class CartController extends AbstractController
     $panier = $session->get('panier', []);
     $data = [];
     $total = 0;
-
+    
     foreach ($panier as $id => $quantite) {
         $parfum = $parfumRepository->find($id);
         
