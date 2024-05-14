@@ -18,7 +18,12 @@
                     {% for parfum in parfums %}
                         <div class="col-md-4 mb-4">
                             <div class="card h-100">
-                                {# <!--img src="/uploads/{{ parfum.image }}" class="card-img-top" alt="{{ parfum.nom }}"---> #}
+                                {# <img src="/uploads/{{ parfum.image }}" class="card-img-top" alt="{{ parfum.nom }}"> #}
+                             {# {% if parfum.image is defined and parfum.image is not empty %}
+                                    <img src="/uploads/{{ parfum.image }}" class="card-img-top" alt="{{ parfum.nom }}">
+                            {% else %}
+                            <img src="/path/to/placeholder-image.jpg" class="card-img-top" alt="Placeholder Image">
+                                {% endif %} #}
                                 <div class="card-body">
                                     <h5 class="card-title">{{ parfum.nom }}</h5>
                                     <p class="card-text"><strong>Catégorie:</strong> {{ parfum.category.nom }}</p>
