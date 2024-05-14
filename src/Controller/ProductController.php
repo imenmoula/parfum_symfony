@@ -34,9 +34,9 @@ class ProductController extends AbstractController
         $search = new search(); 
         $form = $this->createForm(searchType::class, $search);
         $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            $parfums = $this->entityManager->getRepository(Parfum::class)->findWithSearch($search);
+        $criteria = ['nom' => $request->query->get('string')];
+        if( $criteria){
+            $parfums = $this->entityManager->getRepository(Parfum::class)->findByNom($criteria);
         }
         else 
         {
@@ -46,7 +46,7 @@ class ProductController extends AbstractController
 
         return $this->render('product/index.html.twig', [
             'parfums' => $parfums,
-            'form' => $form->createView(),
+             'form' => $form->createView(),
         ]);
     }
     #[Route('/products/{nom}', methods: ['GET'], name: 'product')]

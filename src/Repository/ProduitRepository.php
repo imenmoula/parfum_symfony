@@ -16,27 +16,16 @@ class ProduitRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Produit::class);
+        parent::__construct($registry, Parfum::class);
     }
- public function findWithSearch(Search $search)
+ public function findByNom($search)
 {
-    $query = $this->createQueryBuilder('p')
-        ->select('c', 'p')
-        ->join('p.category', 'c');
-
-    if (!empty($search->category)) {
-        $query = $query
-            ->andWhere('c.id IN (:category)')
-            ->setParameter('category', $search->category);
-    }
-
-    if (!empty($search->string)) {
-        $query = $query
-            ->andWhere('p.nom LIKE :string')
-            ->setParameter('string', '%' . $search->string . '%');
-    }
-
-    return $query->getQuery()->getResult();
+    
+    return $this->createQueryBuilder('p')
+    ->andWhere('p.nom LIKE :nom')
+    ->setParameter('nom', $criteria['nom'] . '%') // Adding % to perform a search for names starting with the given value
+    ->getQuery()
+    ->getResult();
 }
     //    /**
     //     * @return Produit[] Returns an array of Produit objects
