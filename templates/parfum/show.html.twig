@@ -51,13 +51,17 @@
                 <th>Marque</th>
                 <td>{{ parfum.marque }}</td>
             </tr>
+            <tr>
+            <td> Image </td>
              <td>
+             
                 {% if parfum.image %}
                     <img src="{{ asset( parfum.image) }}"  />
                 {% else %}
                     <span>No image available</span>
                 {% endif %}
             </td>
+            </tr>
         </tbody>
     </table>
 
