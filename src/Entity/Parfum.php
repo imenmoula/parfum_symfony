@@ -116,13 +116,18 @@ class Parfum
         return $this;
     }
 
-    public function getImage(): ?File
+  
+
+    
+    public function getImage(): ?string
     {
-        if ($this->image !== null) {
-            // Assurez-vous que $this->image est une chaîne représentant le chemin du fichier
-            return new File($this->image);
+        if (!$this->image) {
+            return null;
         }
-        return null;
+        if (strpos($this->image, '/') !== false) {
+            return $this->image;
+        }
+        return sprintf('uploads/parfum/%s', $this->image);
     }
         public function setImage(?string $image): self
     {
