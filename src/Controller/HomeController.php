@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Category;
 use App\Entity\parfum;
 use App\Repository\CategoryRepository;
+use App\Repository\parfumRepository;
 
 class HomeController extends AbstractController
 {
@@ -35,5 +36,19 @@ class HomeController extends AbstractController
         ]
         );
     }
+
+    #[Route('/home2', name: 'app_home2')]
+    public function index2(SessionInterface $session, CategoryRepository $categoryRepository, parfumRepository $parfumRepository): Response
+{
+    $categories = $categoryRepository->findAll();
+    $parfumByCategory=[];
+    foreach($categories as $category){
+        $parfumByCategory[$category->getId()]=$parfumRepository->findByCategory($category);
+  }
+return $this->render('home/index2.html.twig', [
+    'categories' => $categories,
+    'parfumByCategory' => $parfumByCategory
+]);
     
+}
 }

@@ -1,0 +1,32 @@
+{# templates/home/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Categories and Parfum</h1>
+
+    <div class="categories">
+        {% for category in categories %}
+            <div class="category">
+                <h2>{{ category.nom }}</h2>
+                <div class="perfumes row">
+                    {% for parfum in parfumByCategoryy[category.id] %}
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{ asset('uploads/parfum/' ~ parfum.image) }}" alt="Perfume image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ parfum.nom }}</h5>
+                                <p class="card-text">{{ parfum.description }}</p>
+                                <p class="card-text">{{ parfum.prix }}</p>
+
+
+                            </div>
+                        </div>
+                    {% else %}
+                        <p>No perfumes available in this category.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

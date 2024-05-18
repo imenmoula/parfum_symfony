@@ -6,7 +6,11 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
-            {# <img src="/uploads/{{ parfums.image }}" class="img-fluid" alt="{{ parfums.nom }}"> #}
+            {% if parfums.image %}
+                <img class="card-img-top" src="{{ asset(parfums.image) }}" alt="{{ parfums.nom }}">
+         {% else %}
+                <span>No image available</span>
+                {% endif %}        
         </div>
         <div class="col-md-8">
             <h1>{{ parfums.nom }}</h1>

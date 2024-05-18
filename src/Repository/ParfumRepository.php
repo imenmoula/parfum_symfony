@@ -16,6 +16,15 @@ class ParfumRepository extends ServiceEntityRepository
         parent::__construct($registry, Parfum::class);
     }
 
+public function findByCatgory(Category $category): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.category = :category')
+            ->setParameter('val', $category)
+            ->getQuery()
+            ->getResult();
+        
+    }
     //    /**
     //     * @return Parfum[] Returns an array of Parfum objects
     //     */

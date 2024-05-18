@@ -22,11 +22,11 @@
 {% for d in data %}
   <tr>
   <td>{{d.parfum.nom}}</td>
-  <td>{{d.parfum.prix }}</td>
-  <td>{{d.quantite}}</td>
+  <td>{{d.quantite }}</td>
+  <td>{{d.parfum.prix}}</td>
     <td>{{d.quantite * d.parfum. prix}}</td>
     <td>
-       {# <a href="{{ path('cart-add',{id:d.parfum.id}) }}" class="btn btn-success" >+</a> #}
+        {# <a href="{{ path('add',{id:d.parfum.id}) }}" class="btn btn-success" >+</a>  #}
 
     <a href="{{ path('cart_remove',{id:d.parfum.id}) }}" class="btn btn-warning" >-</a>
     <a href="{{ path('cart_delete',{id:d.parfum.id}) }}" class="btn btn-danger" >supprimer</a>
