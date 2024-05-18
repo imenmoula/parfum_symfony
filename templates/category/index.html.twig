@@ -71,7 +71,11 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.nom }}</td>
                 <td>{{ category.description }}</td>
-                <td>  category.image </td>
+                <td> {% if category.image %}
+                            <img src="{{ asset( category.image) }}" height="50px"  />
+                        {% else %}
+                            <span>No image available</span>
+                        {% endif %} </td>
                 <td>{{ category.dateCreation ? category.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ category.dateUpdate ? category.dateUpdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ category.status }}</td>

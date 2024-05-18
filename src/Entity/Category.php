@@ -70,43 +70,24 @@ class Category
         return $this;
     }
 
-    /*public function getImage(): ?File
+   
+public function getImage(): ?string
     {
-        #return $this->image;
-        new File($this->image);
-    }*/
+        if (!$this->image) {
+            return null;
+        }
+        if (strpos($this->image, '/') !== false) {
+            return $this->image;
+        }
+        return sprintf('uploads/parfum/%s', $this->image);
+    }
 
-    /*public function setImage(string $image): static
+    public function setImage(?string $image): self
     {
         $this->image = $image;
-
+    
         return $this;
-    }*/
-//     public function getImage(): ?File
-// {
-//     if ($this->image !== null) {
-//         // Assurez-vous que $this->image est une chaîne représentant le chemin du fichier
-//         return new File($this->image);
-//     }
-//     return null;
-// }
-//     public function setImage(?File $image): self
-// {
-//     $this->image = $image;
-
-//     return $this;
-// }
-public function getImage(): ?string
-{
-    return $this->image;
-}
-
-public function setImage(?string $image): self
-{
-    $this->image = $image;
-
-    return $this;
-}
+    }
 
 
     public function getDateCreation(): ?\DateTimeInterface

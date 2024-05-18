@@ -75,7 +75,13 @@ class ParfumController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
+            $uploadedFile = $form->get('image')->getData();
+            if ($uploadedFile) {
+                $newFileName = md5(uniqid()) . '.' . $uploadedFile->guessExtension();
+                $uploadedFile->move($this->targetDirectory, $newFileName);
+                $parfum->setImage($newFileName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_parfum_index', [], Response::HTTP_SEE_OTHER);

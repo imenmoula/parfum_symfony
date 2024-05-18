@@ -10,10 +10,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
 
 #[Route('/category')]
 class CategoryController extends AbstractController
 {
+    private $targetDirectory;
+    private $entityManager;
+    public function __construct(ParameterBagInterface $params , EntityManagerInterface $entityManager,)
+    {
+        $this->entityManager = $entityManager;
+        $this->targetDirectory = $params->get('parfum_uploads_directory');
+    }
     #[Route('/', name: 'app_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
@@ -32,6 +42,13 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $entityManager->persist($category);
+            $uploadedFile = $form->get('image')->getData();
+            if ($uploadedFile) {
+                $newFileName = md5(uniqid()) . '.' . $uploadedFile->guessExtension();
+                $uploadedFile->move($this->targetDirectory, $newFileName);
+                $category->setImage($newFileName);
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
@@ -58,7 +75,13 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$this->handleImageUpload($request, $parfum);
+            $uploadedFile = $form->get('image')->getData();
+                if ($uploadedFile) {
+                    $newFileName = md5(uniqid()) . '.' . $uploadedFile->guessExtension();
+                    $uploadedFile->move($this->targetDirectory, $newFileName);
+                    $category->setImage($newFileName);
+                }
+                  
 
             $entityManager->flush();
 
