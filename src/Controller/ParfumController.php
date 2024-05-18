@@ -11,10 +11,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 #[Route('/parfum')]
 class ParfumController extends AbstractController
 {
+    private $targetDirectory;
+
+    public function __construct(EntityManagerInterface $entityManager, ParameterBagInterface $params)
+    {
+        $this->entityManager = $entityManager;
+        $this->targetDirectory = $params->get('parfum_uploads_directory');
+    }
+    
     #[Route('/', name: 'app_parfum_index', methods: ['GET'])]
     public function index(ParfumRepository $parfumRepository): Response
     {
@@ -33,6 +42,12 @@ class ParfumController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $entityManager->persist($parfum);
+            $uploadedFile = $form->get('image')->getData();
+                if ($uploadedFile) {
+                    $newFileName = md5(uniqid()) . '.' . $uploadedFile->guessExtension();
+                    $uploadedFile->move($this->targetDirectory, $newFileName);
+                    $parfum->setImage($newFileName);
+                }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_parfum_index', [], Response::HTTP_SEE_OTHER);

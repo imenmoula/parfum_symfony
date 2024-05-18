@@ -124,7 +124,7 @@ class Parfum
         }
         return null;
     }
-        public function setImage(?File $image): self
+        public function setImage(?string $image): self
     {
         $this->image = $image;
     
