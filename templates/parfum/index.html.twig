@@ -34,7 +34,11 @@
                 <td>{{ parfum.prix }}</td>
                 <td>{{ parfum.qteStock }}</td>
                 <td>
-                    image
+                        {% if parfum.image %}
+                            <img src="{{ asset( parfum.image) }}" height="50px"  />
+                        {% else %}
+                            <span>No image available</span>
+                        {% endif %}
                 </td>
                     
 
