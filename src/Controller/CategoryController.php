@@ -58,7 +58,7 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->handleImageUpload($request, $parfum);
+            //$this->handleImageUpload($request, $parfum);
 
             $entityManager->flush();
 
