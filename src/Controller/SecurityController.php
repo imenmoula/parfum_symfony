@@ -27,12 +27,12 @@ class SecurityController extends AbstractController
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
+    
 
+        // last email entered by the user
+        $lastEmail = $authenticationUtils->getLastUsername();
 
-    // Now you can perform any validation or verification with the $email and $password
-
-    // Example: Dumping email and password for verification
-    dump($email, $password);
+   
 
         return $this->render('security/login.html.twig', [
             'last_email' => $lastEmail,
