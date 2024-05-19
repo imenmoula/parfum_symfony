@@ -1,0 +1,16 @@
+{# templates/security/login.html.twig #}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+<form action="{{ path('connexion') }}" method="post">
+    <label for="email">email:</label>
+    <input type="text" id="email" name="email" value="{{ last_email }}" />
+
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" />
+
+    <button type="submit">login</button>
+</form>

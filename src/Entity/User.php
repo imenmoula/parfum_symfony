@@ -21,7 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    private ?string $email = null;
+    private $email ;
 
     /**
      * @var list<string> The user roles
@@ -35,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = null;
+    private string $password ;
 
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
@@ -57,18 +57,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+    }
+
+   
+
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
+
+    public function getUsername(): string
+    {
+        // Implementing the UserInterface requires this method,
+        // but we will use email instead of username
+        return $this->email;
+    }
     /**
      * A visual identifier that represents this user.
      *
@@ -84,50 +98,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * 
      */
-    public function getRoles(): string
+    public function getRoles(): array
     {
-        // guarantee every user at least has ROLE_USER
+        // Convert the string to an array
+        $roles = explode(',', $this->roles);
 
-        return $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    
-    public function setRoles(string $roles): static
+    public function setRoles(array $roles): self
     {
-        // Ensure that every user at least has ROLE_USER
-        $roles = 'ROLE_USER';
-
-        // @todo: You should validate the roles here, e.g. check if they exist in the
-        //        ROLE_* constants defined by the SecurityBundle
-
-        $this->roles = $roles;
+        // Convert the array to a string
+        $this->roles = implode(',', $roles);
 
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
+    
     public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials(): void
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
+    
 
     public function getFirstname(): ?string
     {
