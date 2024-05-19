@@ -6,8 +6,7 @@ security:
     
     # Use password_hashers instead
     password_hashers:
-        App\Entity\User: 'auto'
-    
+        App\Entity\User: 'auto' 
     providers:
         users_in_memory: { memory: null }
 
